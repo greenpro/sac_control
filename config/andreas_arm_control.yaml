@@ -1,0 +1,31 @@
+andreas_arm:
+    # Publish all joint states
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 50
+
+    # Position Controllers
+    alpha_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: alpha_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+    beta_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: beta_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+    gamma_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: gamma_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+    delta_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: delta_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+    epsilon_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: epsilon_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+    zeta_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: zeta_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
