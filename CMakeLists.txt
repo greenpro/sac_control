@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(andreas_arm_control)
+project(sac_controllers)
 
 add_compile_options(-std=c++11)
 
@@ -130,24 +130,24 @@ catkin_package(
 # include_directories(include)
 
 ## Declare a C++ library
-# add_library(andreas_arm_control
-#   src/${PROJECT_NAME}/andreas_arm_control.cpp
+# add_library(sac_controllers
+#   src/${PROJECT_NAME}/sac_controllers.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(andreas_arm_control ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(sac_controllers ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(andreas_arm_control_node src/andreas_arm_control_node.cpp)
+# add_executable(sac_controllers_node src/sac_controllers_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(andreas_arm_control_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(sac_controllers_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(andreas_arm_control_node
+# target_link_libraries(sac_controllers_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -166,7 +166,7 @@ catkin_package(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS andreas_arm_control andreas_arm_control_node
+# install(TARGETS sac_controllers sac_controllers_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -191,7 +191,7 @@ catkin_package(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_andreas_arm_control.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_sac_controllers.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>andreas_arm_control</name>
+  <name>sac_controllers</name>
   <version>0.0.0</version>
-  <description>The andreas_arm_control package</description>
+  <description>The sac_controllers package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/andreas_arm_control</url> -->
+  <!-- <url type="website">http://wiki.ros.org/sac_controllers</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->

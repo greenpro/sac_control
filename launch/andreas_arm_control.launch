@@ -1,6 +1,6 @@
 <launch>
     <!-- Load the joint controller configurations from the yaml file to the parameter server -->
-    <rosparam file="$(find andreas_arm_control)/config/andreas_arm_control.yaml" command="load" />
+    <rosparam file="$(find sac_controllers)/config/andreas_arm_control.yaml" command="load" />
 
     <!-- Load the controllers -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
