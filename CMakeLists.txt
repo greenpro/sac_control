@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
     roscpp
     pluginlib
     geometric_shapes
+    message_generation
 )
 # moveit_core
 # moveit_ros_planning
@@ -56,12 +57,11 @@ find_package(Boost REQUIRED COMPONENTS system filesystem date_time thread)
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  target.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -77,11 +77,11 @@ find_package(Boost REQUIRED COMPONENTS system filesystem date_time thread)
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+# Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -117,6 +117,7 @@ catkin_package(
         moveit_core
         moveit_ros_planning_interface
         interactive_markers
+        message_runtime
     DEPENDS
         EIGEN3
 )
