@@ -6,7 +6,7 @@
   <arg name="planning_plugin" value="ompl_interface/OMPLPlanner" />
   <arg name="planning_adapters" value="default_planner_request_adapters/AddTimeParameterization default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints" />
 
-  <include file="$(find sac_config)/launch/planning_context.launch">
+  <include file="$(find sac_config)/launch/andreas_arm_planning_context.launch">
     <arg name="load_robot_description" value="true"/>
   </include>
 
