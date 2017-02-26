@@ -8,3 +8,5 @@ Notes:
 
 References:
     Much of the code for this section is modified from the gazebo tutorial.
+
+// TODO :: when the launch files have been created move this to a readme.md file and add all of the items there
