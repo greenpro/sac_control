@@ -23,7 +23,10 @@ msg/
 * This folder contains the custom message files for the project.
 
 src/
-* This folder contains the controllers for the system.
+* This folder contains the c++ controllers for the system.
+
+scripts/
+* This folder contains the python controllers for the system.
 
 ## Remove
 * The config folder may need to be removed later.
