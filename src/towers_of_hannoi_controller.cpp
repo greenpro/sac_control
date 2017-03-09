@@ -1,19 +1,15 @@
 // loop for the controller issuing commands to the rest of the system
 // callback for the menu selector int32
-#include <helpers/config.h>
+#include "helpers/config.h"
+#include "helpers/selector.h"
+
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
 
 #define CONTROLLER_NUM 1
 
 bool enabled = false;
-
-void callback(const std_msgs::Int32::ConstPtr& msg)
-{
-    if (msg->data == CONTROLLER_NUM)
-        enabled = true;
-    else
-        enabled = false;
-}
+selector *sel;
 
 int main(int argc, char **argv)
 {
@@ -23,11 +19,13 @@ int main(int argc, char **argv)
     ros::Subscriber sub = nh.subscribe("controllerMode", 1000, callback);
 
     //float x, y, z, theta, time
-    coordinates = nh.advertise<geometry_msgs
+    ros::Publisher coordinates = nh.advertise<geometry_msgs::Twist>("moveto", 1000);
+
+    sel = new selector(0, nh);
 
     while (1)
     {
-        if (enabled)
+        if (sel->isSelected())
         {
             
         }
