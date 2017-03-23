@@ -16,18 +16,18 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "custom_controller");
 
     ros::NodeHandle nh;
-    ros::Subscriber sub = nh.subscribe("controllerMode", 1000, callback);
+//    ros::Subscriber sub = nh.subscribe("controllerMode", 1000, callback);
 
     //float x, y, z, theta, time
     ros::Publisher coordinates = nh.advertise<geometry_msgs::Twist>("moveto", 1000);
 
-    sel = new selector(0, nh);
+    //sel = new selector(0, nh);
 
-    while (1)
-    {
-        if (sel->isSelected())
-        {
-            
-        }
-    }
+    //while (1)
+    //{
+    //    if (sel->isSelected())
+    //    {
+    //        
+    //    }
+    //}
 }
