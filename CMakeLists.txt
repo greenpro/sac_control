@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sac_controllers)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++14)
 
 #find_package(Eigen3 REQUIRED)
 
@@ -15,9 +15,9 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
     rospy
     roscpp
-    pluginlib
-    geometric_shapes
-    message_generation
+    #pluginlib
+    #geometric_shapes
+    #message_generation
 )
 # moveit_core
 # moveit_ros_planning
@@ -112,15 +112,15 @@ generate_messages(
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-    CATKIN_DEPENDS
-        moveit_core
-        moveit_ros_planning_interface
-        interactive_markers
-        message_runtime
-    DEPENDS
-        EIGEN3
-)
+#catkin_package(
+#    CATKIN_DEPENDS
+#        moveit_core
+#        moveit_ros_planning_interface
+#        interactive_markers
+#        message_runtime
+#    DEPENDS
+#        EIGEN3
+#)
 
 ###########
 ## Build ##
@@ -202,5 +202,5 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(       towers_of_hannoi_controller src/towers_of_hannoi_controller.cpp)
-target_link_libraries(towers_of_hannoi_controller ${catkin_LIBRARIES})
+#add_executable(       towers_of_hannoi_controller src/towers_of_hannoi_controller.cpp)
+#target_link_libraries(towers_of_hannoi_controller ${catkin_LIBRARIES})
