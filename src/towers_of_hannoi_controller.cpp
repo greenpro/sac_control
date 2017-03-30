@@ -5,7 +5,7 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include <sac_msgs/target.h>
+#include <sac_msgs/Target.h>
 
 #define CONTROLLER_NUM 1
 
