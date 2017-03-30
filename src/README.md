@@ -3,17 +3,17 @@
 This folder holds the controller files for the project.
 
 ## Files
-custom_controller.cpp
+### custom_controller.cpp
 * This controller will provide a blank framework for others to copy and add on top of.
 
-towers_of_hannoi_controller.cpp
+### towers_of_hannoi_controller.cpp
 * This controller will provide perform the Towers of Hannoi solution.
 
-api_controller.cpp
+### api_controller.cpp
 * This controller will provide a web API to control the robot with.
 
 ## Folders
-helpers/
+### helpers/
 * This folder contains any helper headders included in the controllers.
 
 ## Notes
