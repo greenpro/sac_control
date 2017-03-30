@@ -15,9 +15,8 @@ add_compile_options(-std=c++14)
 find_package(catkin REQUIRED COMPONENTS
     rospy
     roscpp
-    #pluginlib
-    #geometric_shapes
-    #message_generation
+    message_generation
+    sac_msgs
 )
 # moveit_core
 # moveit_ros_planning
@@ -112,15 +111,10 @@ find_package(Boost REQUIRED COMPONENTS system filesystem date_time thread)
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-#catkin_package(
-#    CATKIN_DEPENDS
-#        moveit_core
-#        moveit_ros_planning_interface
-#        interactive_markers
-#        message_runtime
-#    DEPENDS
-#        EIGEN3
-#)
+catkin_package(
+    CATKIN_DEPENDS
+        message_runtime
+)
 
 ###########
 ## Build ##
@@ -202,5 +196,5 @@ find_package(Boost REQUIRED COMPONENTS system filesystem date_time thread)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-#add_executable(       towers_of_hannoi_controller src/towers_of_hannoi_controller.cpp)
-#target_link_libraries(towers_of_hannoi_controller ${catkin_LIBRARIES})
+add_executable(       towers_of_hannoi_controller src/towers_of_hannoi_controller.cpp)
+target_link_libraries(towers_of_hannoi_controller ${catkin_LIBRARIES})

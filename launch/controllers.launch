@@ -19,4 +19,6 @@
         <remap from="/joint_states" to="/scorbot/joint_states" />
     </node>
     
+    <node name="towers_of_hannoi" pkg="sac_controllers" type="towers_of_hannoi" 
+        respawn="false" output="screen" />
 </launch>
