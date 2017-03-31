@@ -1,4 +1,4 @@
 <launch>
-    <node name="towers_of_hannoi" pkg="sac_controllers" type="towers_of_hannoi" 
+    <node name="towers_of_hannoi_controller" pkg="sac_controllers" type="towers_of_hannoi_controller" 
         respawn="false" output="screen" />
 </launch>

@@ -6,6 +6,7 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <sac_msgs/Target.h>
+//#include <sac_msgs/Path.h>
 
 #define CONTROLLER_NUM 1
 
@@ -14,21 +15,27 @@ selector *sel;
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "custom_controller");
+    ros::init(argc, argv, "towers_of_hannoi_controller");
 
     ros::NodeHandle nh;
-//    ros::Subscriber sub = nh.subscribe("controllerMode", 1000, callback);
 
-    //float x, y, z, theta, time
-    ros::Publisher coordinates = nh.advertise<geometry_msgs::Twist>("moveto", 1000);
+    ros::Publisher targets = nh.advertise<sac_msgs::Target>("/moveto", 1000);
+    sac_msgs::Target msg;
 
-    //sel = new selector(0, nh);
+    sleep(10);
+    while (1)
+    {
+        msg.x = 0.400;
+        msg.y = 0.000;
+        msg.z = 0.349;
+        targets.publish(msg);
 
-    //while (1)
-    //{
-    //    if (sel->isSelected())
-    //    {
-    //        
-    //    }
-    //}
+        sleep(3);
+
+        msg.x = 0.000;
+        msg.y = 0.400;
+        targets.publish(msg);
+
+        sleep(3);
+    }
 }
