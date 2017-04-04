@@ -35,16 +35,16 @@ int main(int argc, char **argv)
 
         sleep(5);
 
-        msg.x = 0.300;
+        msg.x = 0.400;
         msg.y = 0.000;
-        msg.z = 0.500;
+        msg.z = 0.100;
         msg.pitch = 0;
         msg.roll = 0;
         targets.publish(msg);
 
         sleep(5);
 
-        msg.x = 0.373;
+        msg.x = 0.387;
         msg.y = 0.000;
         msg.z = 0.570;
         msg.pitch = 0;
