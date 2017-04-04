@@ -8,7 +8,8 @@
 #include <sac_msgs/Target.h>
 //#include <sac_msgs/Path.h>
 
-#define CONTROLLER_NUM 1
+#define CONTROLLER_NUM (1)
+#define PI (3.1459265)
 
 bool enabled = false;
 selector *sel;
@@ -25,17 +26,31 @@ int main(int argc, char **argv)
     sleep(10);
     while (1)
     {
-        msg.x = 0.400;
+        msg.x = 0.300;
+        msg.y = -0.040;
+        msg.z = 0.000;
+        msg.pitch = PI / 2;
+        msg.roll = 0;
+        targets.publish(msg);
+
+        sleep(5);
+
+        msg.x = 0.300;
         msg.y = 0.000;
-        msg.z = 0.349;
+        msg.z = 0.500;
+        msg.pitch = 0;
+        msg.roll = 0;
         targets.publish(msg);
 
-        sleep(3);
+        sleep(5);
 
-        msg.x = 0.000;
-        msg.y = 0.400;
+        msg.x = 0.373;
+        msg.y = 0.000;
+        msg.z = 0.570;
+        msg.pitch = 0;
+        msg.roll = 0;
         targets.publish(msg);
 
-        sleep(3);
+        sleep(5);
     }
 }
