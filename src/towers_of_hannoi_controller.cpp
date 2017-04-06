@@ -26,67 +26,72 @@ int main(int argc, char **argv)
     ros::Publisher hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
     sac_msgs::HandPos handMsg;
 
-    sleep(10);
+    sleep(30);
     while (1)
     {
-        targetMsg.x = 0.300;
-        targetMsg.y = -0.040;
-        targetMsg.z = 0.000;
-        targetMsg.pitch = PI / 2;
+        ROS_INFO("MOVE INTO PLACE");
+        targetMsg.x = 0.400;
+        targetMsg.y = 0.000;
+        targetMsg.z = 0.100;
+        targetMsg.pitch = 0;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
-        handMsg.width = 0.000;
+        handMsg.width = 0.064;
         hand.publish(handMsg);
 
-        sleep(5);
+        sleep(20);
+        ROS_INFO("MOVE DOWN");
+
+        targetMsg.x = 0.400;
+        targetMsg.y = 0.000;
+        targetMsg.z = 0.005;
+        targetMsg.pitch = 0;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.064;
+        hand.publish(handMsg);
+
+        sleep(20);
+        ROS_INFO("GRIP");
+
+        targetMsg.x = 0.400;
+        targetMsg.y = 0.000;
+        targetMsg.z = 0.005;
+        targetMsg.pitch = 0;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.030;
+        hand.publish(handMsg);
+
+        sleep(20);
+        ROS_INFO("LIFT");
 
         targetMsg.x = 0.400;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
         targetMsg.pitch = 0;
-        targetMsg.roll = PI / 2;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.065;
-        hand.publish(handMsg);
-
-        sleep(5);
-
-        targetMsg.x = 0.387;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.570;
-        targetMsg.pitch = 0;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
-        handMsg.width = 0.032;
+        handMsg.width = 0.030;
         hand.publish(handMsg);
 
-        sleep(5);
+        sleep(20);
+        ROS_INFO("DROP");
 
-        targetMsg.x = 0.387;
+        targetMsg.x = 0.400;
         targetMsg.y = 0.000;
-        targetMsg.z = 0.570;
+        targetMsg.z = 0.100;
         targetMsg.pitch = 0;
-        targetMsg.roll = PI / 2;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.000;
-        hand.publish(handMsg);
-
-        sleep(5);
-
-        targetMsg.x = 0.387;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.570;
-        targetMsg.pitch = 0;
-        targetMsg.roll = -PI / 2;
+        targetMsg.roll = 0;
         targets.publish(targetMsg);
         
         handMsg.width = 0.64;
         hand.publish(handMsg);
 
-        sleep(5);
+        sleep(20);
     }
 }
