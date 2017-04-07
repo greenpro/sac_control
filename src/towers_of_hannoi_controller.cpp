@@ -30,10 +30,10 @@ int main(int argc, char **argv)
     while (1)
     {
         ROS_INFO("MOVE INTO PLACE");
-        targetMsg.x = 0.400;
+        targetMsg.x = 0.236;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
-        targetMsg.pitch = 0;
+        targetMsg.pitch = PI / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
@@ -41,57 +41,70 @@ int main(int argc, char **argv)
         hand.publish(handMsg);
 
         sleep(20);
-        ROS_INFO("MOVE DOWN");
+        ROS_INFO("CLOSE GRIPPER");
 
-        targetMsg.x = 0.400;
+        targetMsg.x = 0.236;
         targetMsg.y = 0.000;
         targetMsg.z = 0.005;
-        targetMsg.pitch = 0;
+        targetMsg.pitch = PI / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
-        handMsg.width = 0.064;
+        handMsg.width = 0.001;
         hand.publish(handMsg);
 
         sleep(20);
-        ROS_INFO("GRIP");
+        //ROS_INFO("MOVE DOWN");
 
-        targetMsg.x = 0.400;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.005;
-        targetMsg.pitch = 0;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.030;
-        hand.publish(handMsg);
+        //targetMsg.x = 0.400;
+        //targetMsg.y = 0.000;
+        //targetMsg.z = 0.005;
+        //targetMsg.pitch = 0;
+        //targetMsg.roll = 0;
+        //targets.publish(targetMsg);
+        //
+        //handMsg.width = 0.064;
+        //hand.publish(handMsg);
 
-        sleep(20);
-        ROS_INFO("LIFT");
+        //sleep(20);
+        //ROS_INFO("GRIP");
 
-        targetMsg.x = 0.400;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.100;
-        targetMsg.pitch = 0;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.030;
-        hand.publish(handMsg);
+        //targetMsg.x = 0.400;
+        //targetMsg.y = 0.000;
+        //targetMsg.z = 0.005;
+        //targetMsg.pitch = 0;
+        //targetMsg.roll = 0;
+        //targets.publish(targetMsg);
+        //
+        //handMsg.width = 0.030;
+        //hand.publish(handMsg);
 
-        sleep(20);
-        ROS_INFO("DROP");
+        //sleep(20);
+        //ROS_INFO("LIFT");
 
-        targetMsg.x = 0.400;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.100;
-        targetMsg.pitch = 0;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.64;
-        hand.publish(handMsg);
+        //targetMsg.x = 0.400;
+        //targetMsg.y = 0.000;
+        //targetMsg.z = 0.100;
+        //targetMsg.pitch = 0;
+        //targetMsg.roll = 0;
+        //targets.publish(targetMsg);
+        //
+        //handMsg.width = 0.030;
+        //hand.publish(handMsg);
 
-        sleep(20);
+        //sleep(20);
+        //ROS_INFO("DROP");
+
+        //targetMsg.x = 0.400;
+        //targetMsg.y = 0.000;
+        //targetMsg.z = 0.100;
+        //targetMsg.pitch = 0;
+        //targetMsg.roll = 0;
+        //targets.publish(targetMsg);
+        //
+        //handMsg.width = 0.64;
+        //hand.publish(handMsg);
+
+        //sleep(20);
     }
 }
