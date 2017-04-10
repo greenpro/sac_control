@@ -10,7 +10,7 @@
 #include <sac_msgs/HandPos.h>
 
 #define CONTROLLER_NUM (1)
-#define PI (3.1459265)
+#define PI (3.145926535898)
 
 bool enabled = false;
 selector *sel;
@@ -29,7 +29,6 @@ int main(int argc, char **argv)
     sleep(30);
     while (1)
     {
-        ROS_INFO("MOVE INTO PLACE");
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
@@ -37,11 +36,10 @@ int main(int argc, char **argv)
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
-        handMsg.width = 0.064;
+        handMsg.width = 0.065;
         hand.publish(handMsg);
 
-        sleep(20);
-        ROS_INFO("CLOSE GRIPPER");
+        sleep(15);
 
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
@@ -50,10 +48,34 @@ int main(int argc, char **argv)
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
-        handMsg.width = 0.001;
+        handMsg.width = 0.065;
         hand.publish(handMsg);
 
-        sleep(20);
+        sleep(15);
+
+        targetMsg.x = 0.236;
+        targetMsg.y = 0.000;
+        targetMsg.z = 0.005;
+        targetMsg.pitch = PI / 2;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.040;
+        hand.publish(handMsg);
+
+        sleep(15);
+
+        targetMsg.x = 0.236;
+        targetMsg.y = 0.000;
+        targetMsg.z = 0.100;
+        targetMsg.pitch = PI / 2;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.040;
+        hand.publish(handMsg);
+
+        sleep(15);
         //ROS_INFO("MOVE DOWN");
 
         //targetMsg.x = 0.400;
