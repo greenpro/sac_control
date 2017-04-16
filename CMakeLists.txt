@@ -114,6 +114,7 @@ find_package(Boost REQUIRED COMPONENTS system filesystem date_time thread)
 catkin_package(
     CATKIN_DEPENDS
         message_runtime
+        sac_msgs
 )
 
 ###########
