@@ -26,10 +26,10 @@ int main(int argc, char **argv)
     ros::Publisher hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
     sac_msgs::HandPos handMsg;
 
-    sleep(30);
+    sleep(40);
     while (1)
     {
-        targetMsg.x = 0.236;
+        targetMsg.x = 0.336;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
         targetMsg.pitch = PI / 2;
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         handMsg.width = 0.065;
         hand.publish(handMsg);
 
-        sleep(15);
+        sleep(25);
 
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
         handMsg.width = 0.065;
         hand.publish(handMsg);
 
-        sleep(15);
+        sleep(25);
 
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
@@ -63,9 +63,9 @@ int main(int argc, char **argv)
         handMsg.width = 0.040;
         hand.publish(handMsg);
 
-        sleep(15);
+        sleep(25);
 
-        targetMsg.x = 0.236;
+        targetMsg.x = 0.336;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
         targetMsg.pitch = PI / 2;
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
         handMsg.width = 0.040;
         hand.publish(handMsg);
 
-        sleep(15);
+        sleep(25);
         //ROS_INFO("MOVE DOWN");
 
         //targetMsg.x = 0.400;
