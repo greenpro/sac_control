@@ -9,15 +9,21 @@
 //#include <sac_msgs/Path.h>
 #include <sac_msgs/HandPos.h>
 
-#define CONTROLLER_NUM (1)
-#define PI (3.145926535898)
+namespace towers
+{
+    // constants
+    const char *nodeName = "towers_of_hannoi_controller";
+    const int controllerNum = 1;
+    const float pi = 3.1415926535898;
 
-bool enabled = false;
-selector *sel;
+    // variables
+    bool enabled = true; // change this to false later if this is not the default node.
+    selector *sel;
+}
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "towers_of_hannoi_controller");
+    ros::init(argc, argv, towers::nodeName);
 
     ros::NodeHandle nh;
 
@@ -27,12 +33,12 @@ int main(int argc, char **argv)
     sac_msgs::HandPos handMsg;
 
     sleep(40);
-    while (1)
+    while (towers::enabled)
     {
         targetMsg.x = 0.336;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
-        targetMsg.pitch = PI / 2;
+        targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
@@ -44,7 +50,7 @@ int main(int argc, char **argv)
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
         targetMsg.z = 0.005;
-        targetMsg.pitch = PI / 2;
+        targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
@@ -56,7 +62,7 @@ int main(int argc, char **argv)
         targetMsg.x = 0.236;
         targetMsg.y = 0.000;
         targetMsg.z = 0.005;
-        targetMsg.pitch = PI / 2;
+        targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
@@ -68,7 +74,7 @@ int main(int argc, char **argv)
         targetMsg.x = 0.336;
         targetMsg.y = 0.000;
         targetMsg.z = 0.100;
-        targetMsg.pitch = PI / 2;
+        targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
