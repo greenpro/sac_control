@@ -3,11 +3,11 @@ project(sac_controllers)
 
 add_compile_options(-std=c++14)
 
-#find_package(Eigen3 REQUIRED)
+find_package(Eigen3 REQUIRED)
 
-#if(NOT EIGEN3_INCLUDE_DIRS)
-#    set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
-#endif()
+if(NOT EIGEN3_INCLUDE_DIRS)
+    set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
+endif()
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -17,6 +17,10 @@ find_package(catkin REQUIRED COMPONENTS
     roscpp
     message_generation
     sac_msgs
+    geometric_shapes
+    moveit_core
+    moveit_ros_planning
+    moveit_ros_planning_interface
 )
 # moveit_core
 # moveit_ros_planning
@@ -146,6 +150,15 @@ catkin_package(
 # target_link_libraries(sac_controllers_node
 #   ${catkin_LIBRARIES}
 # )
+include_directories(
+    SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIRS}
+)
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
+link_directories(
+    ${catkin_LIBRARY_DIRS}
+)
 
 #############
 ## Install ##

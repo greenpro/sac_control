@@ -5,7 +5,13 @@
 
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose.h>
+#include <shape_msgs/SolidPrimitive.h>
 #include <sac_msgs/Target.h>
+#include <moveit_msgs/AttachedCollisionObject.h>
+#include <moveit_msgs/CollisionObject.h>
+#include <moveit/move_group_interface/move_group_interface.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
 //#include <sac_msgs/Path.h>
 #include <sac_msgs/HandPos.h>
 
@@ -15,6 +21,7 @@ namespace towers
     const char *nodeName = "towers_of_hannoi_controller";
     const int controllerNum = 1;
     const float pi = 3.1415926535898;
+    const char *planningGroup = "arm";
 
     // variables
     bool enabled = true; // change this to false later if this is not the default node.
@@ -31,6 +38,38 @@ int main(int argc, char **argv)
     sac_msgs::Target targetMsg;
     ros::Publisher hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
     sac_msgs::HandPos handMsg;
+
+    // planning scene
+    moveit::planning_interface::PlanningSceneInterface planningSceneInterface;
+    // planning group
+    moveit::planning_interface::MoveGroupInterface moveGroup(towers::planningGroup);
+    // collision object
+    moveit_msgs::CollisionObject collisionObject;
+    collisionObject.header.frame_id = moveGroup.getPlanningFrame();
+    collisionObject.id = "towerBase";
+    // define the object
+    shape_msgs::SolidPrimitive primitive;
+    primitive.type = primitive.BOX;
+    primitive.dimensions.resize(3);
+    primitive.dimensions[0] = 0.4;
+    primitive.dimensions[1] = 0.4;
+    primitive.dimensions[2] = 0.4;
+    // define the object pos
+    geometry_msgs::Pose boxPose;
+    boxPose.orientation.w = 1.0;
+    boxPose.position.x = 0.6;
+    boxPose.position.y = -0.4;
+    boxPose.position.z = 1.2;
+
+    collisionObject.primitives.push_back(primitive);
+    collisionObject.primitive_poses.push_back(boxPose);
+    collisionObject.operation = collisionObject.ADD;
+
+    std::vector<moveit_msgs::CollisionObject> collisionObjects;
+    collisionObjects.push_back(collisionObject);
+
+    // Add the objects to the world
+    planningSceneInterface.addCollisionObjects(collisionObjects);
 
     sleep(40);
     while (towers::enabled)
