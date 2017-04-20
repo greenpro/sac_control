@@ -41,38 +41,38 @@ int main(int argc, char **argv)
     sac_msgs::HandPos handMsg;
     ROS_INFO("-------------------------publishers");
 
-    //sleep(40);
-    //ROS_INFO("-------------------------sleep finish");
-    //// planning scene
-    //moveit::planning_interface::PlanningSceneInterface planningSceneInterface;
-    //ROS_INFO("-------------------------planning scene");
-    //// planning group
-    //moveit::planning_interface::MoveGroupInterface moveGroup(towers::planningGroup);
-    //ROS_INFO("-------------------------planning group");
-    //// collision object
-    //moveit_msgs::CollisionObject collisionObject;
-    //collisionObject.header.frame_id = moveGroup.getPlanningFrame();
-    //collisionObject.id = "towerBase";
-    //ROS_INFO("-------------------------collision");
-    //// define the object
-    //shape_msgs::SolidPrimitive primitive;
-    //primitive.type = primitive.BOX;
-    //primitive.dimensions.resize(3);
-    //primitive.dimensions[0] = 0.4;
-    //primitive.dimensions[1] = 0.4;
-    //primitive.dimensions[2] = 0.4;
-    //ROS_INFO("-------------------------object definition");
-    //// define the object pos
-    //geometry_msgs::Pose boxPose;
-    //boxPose.orientation.w = 1.0;
-    //boxPose.position.x = 0.6;
-    //boxPose.position.y = -0.4;
-    //boxPose.position.z = 1.2;
-    //ROS_INFO("-------------------------object pose");
+    sleep(40);
+    ROS_INFO("-------------------------sleep finish");
+    // planning scene
+    moveit::planning_interface::PlanningSceneInterface planningSceneInterface;
+    ROS_INFO("-------------------------planning scene");
+    // planning group
+    moveit::planning_interface::MoveGroupInterface moveGroup(towers::planningGroup);
+    ROS_INFO("-------------------------planning group");
+    // collision object
+    moveit_msgs::CollisionObject collisionObject;
+    collisionObject.header.frame_id = moveGroup.getPlanningFrame();
+    collisionObject.id = "towerBase";
+    ROS_INFO("-------------------------collision");
+    // define the object
+    shape_msgs::SolidPrimitive primitive;
+    primitive.type = primitive.BOX;
+    primitive.dimensions.resize(3);
+    primitive.dimensions[0] = 0.4;
+    primitive.dimensions[1] = 0.4;
+    primitive.dimensions[2] = 0.4;
+    ROS_INFO("-------------------------object definition");
+    // define the object pos
+    geometry_msgs::Pose boxPose;
+    boxPose.orientation.w = 1.0;
+    boxPose.position.x = 0.6;
+    boxPose.position.y = -0.4;
+    boxPose.position.z = 1.2;
+    ROS_INFO("-------------------------object pose");
 
-    //collisionObject.primitives.push_back(primitive);
-    //collisionObject.primitive_poses.push_back(boxPose);
-    //collisionObject.operation = collisionObject.ADD;
+    collisionObject.primitives.push_back(primitive);
+    collisionObject.primitive_poses.push_back(boxPose);
+    collisionObject.operation = collisionObject.ADD;
 
     //std::vector<moveit_msgs::CollisionObject> collisionObjects;
     //collisionObjects.push_back(collisionObject);
@@ -86,7 +86,7 @@ int main(int argc, char **argv)
     {
         targetMsg.x = 0.336;
         targetMsg.y = 0.000;
-        targetMsg.z = 0.100;
+        targetMsg.z = 0.200;
         targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
@@ -96,9 +96,9 @@ int main(int argc, char **argv)
 
         sleep(25);
 
-        targetMsg.x = 0.236;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.005;
+        targetMsg.x = 0.000;
+        targetMsg.y = 0.336;
+        targetMsg.z = 0.200;
         targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
@@ -108,9 +108,21 @@ int main(int argc, char **argv)
 
         sleep(25);
 
-        targetMsg.x = 0.236;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.005;
+        targetMsg.x = 0.000;
+        targetMsg.y = 0.300;
+        targetMsg.z = 0.070;
+        targetMsg.pitch = towers::pi / 2;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.065;
+        hand.publish(handMsg);
+
+        sleep(25);
+
+        targetMsg.x = 0.000;
+        targetMsg.y = 0.300;
+        targetMsg.z = 0.070;
         targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
@@ -120,14 +132,26 @@ int main(int argc, char **argv)
 
         sleep(25);
 
-        targetMsg.x = 0.336;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.100;
+        targetMsg.x = 0.000;
+        targetMsg.y = 0.336;
+        targetMsg.z = 0.200;
         targetMsg.pitch = towers::pi / 2;
         targetMsg.roll = 0;
         targets.publish(targetMsg);
         
         handMsg.width = 0.051;
+        hand.publish(handMsg);
+
+        sleep(25);
+
+        targetMsg.x = 0.000;
+        targetMsg.y = 0.336;
+        targetMsg.z = 0.200;
+        targetMsg.pitch = towers::pi / 2;
+        targetMsg.roll = 0;
+        targets.publish(targetMsg);
+        
+        handMsg.width = 0.065;
         hand.publish(handMsg);
 
         sleep(25);
