@@ -26,6 +26,30 @@ namespace towers
     // variables
     bool enabled = true; // change this to false later if this is not the default node.
     selector *sel;
+
+    // publishers
+    ros::Publisher targets;
+    ros::Publisher hand;
+}
+
+void move(float x, float y, float z, 
+	  float roll, float pitch, float hand)
+{
+    // Arm movement
+    sac_msgs::Target targetMsg;
+    
+    targetMsg.x = x;
+    targetMsg.y = y;
+    targetMsg.z = z;
+    targetMsg.pitch = pitch;
+    targetMsg.roll = roll;
+    towers::targets.publish(targetMsg);
+    
+    // Hand movement
+    sac_msgs::HandPos handMsg;
+    
+    handMsg.width = hand;
+    towers::hand.publish(handMsg);
 }
 
 int main(int argc, char **argv)
@@ -33,179 +57,55 @@ int main(int argc, char **argv)
     ros::init(argc, argv, towers::nodeName);
 
     ros::NodeHandle nh;
-    ROS_INFO("-------------------------started");
 
-    ros::Publisher targets = nh.advertise<sac_msgs::Target>("/moveto", 1000);
-    sac_msgs::Target targetMsg;
-    ros::Publisher hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
-    sac_msgs::HandPos handMsg;
-    ROS_INFO("-------------------------publishers");
-
-    sleep(40);
-    ROS_INFO("-------------------------sleep finish");
-    // planning scene
-    moveit::planning_interface::PlanningSceneInterface planningSceneInterface;
-    ROS_INFO("-------------------------planning scene");
-    // planning group
-    moveit::planning_interface::MoveGroupInterface moveGroup(towers::planningGroup);
-    ROS_INFO("-------------------------planning group");
-    // collision object
-    moveit_msgs::CollisionObject collisionObject;
-    collisionObject.header.frame_id = moveGroup.getPlanningFrame();
-    collisionObject.id = "towerBase";
-    ROS_INFO("-------------------------collision");
-    // define the object
-    shape_msgs::SolidPrimitive primitive;
-    primitive.type = primitive.BOX;
-    primitive.dimensions.resize(3);
-    primitive.dimensions[0] = 0.4;
-    primitive.dimensions[1] = 0.4;
-    primitive.dimensions[2] = 0.4;
-    ROS_INFO("-------------------------object definition");
-    // define the object pos
-    geometry_msgs::Pose boxPose;
-    boxPose.orientation.w = 1.0;
-    boxPose.position.x = 0.6;
-    boxPose.position.y = -0.4;
-    boxPose.position.z = 1.2;
-    ROS_INFO("-------------------------object pose");
-
-    collisionObject.primitives.push_back(primitive);
-    collisionObject.primitive_poses.push_back(boxPose);
-    collisionObject.operation = collisionObject.ADD;
-
-    //std::vector<moveit_msgs::CollisionObject> collisionObjects;
-    //collisionObjects.push_back(collisionObject);
-    //ROS_INFO("-------------------------collision object");
-
-    //// Add the objects to the world
-    //planningSceneInterface.addCollisionObjects(collisionObjects);
-    //ROS_INFO("-------------------------added");
+    towers::targets = nh.advertise<sac_msgs::Target>("/moveto", 1000);
+    towers::hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
 
     while (towers::enabled)
     {
-        targetMsg.x = 0.336;
-        targetMsg.y = 0.000;
-        targetMsg.z = 0.200;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.065;
-        hand.publish(handMsg);
+	// lift into place
+	move(0.336000, 0.000000, 0.200000, 
+	     0.000000, towers::pi / 2, 0.065);
+        sleep(30);
 
+	// turn to move over the block
+	move(0.000000, 0.336000, 0.200000, 
+	     0.000000, towers::pi / 2, 0.065);
         sleep(25);
 
-        targetMsg.x = 0.000;
-        targetMsg.y = 0.336;
-        targetMsg.z = 0.200;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.065;
-        hand.publish(handMsg);
-
+	// lower onto the block
+	move(0.000000, 0.336000, 0.070000, 
+	     0.000000, towers::pi / 2, 0.065);
         sleep(25);
 
-        targetMsg.x = 0.000;
-        targetMsg.y = 0.300;
-        targetMsg.z = 0.070;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.065;
-        hand.publish(handMsg);
-
+	// close the hand on the block
+	move(0.000000, 0.336000, 0.070000, 
+	     0.000000, towers::pi / 2, 0.040);
         sleep(25);
 
-        targetMsg.x = 0.000;
-        targetMsg.y = 0.300;
-        targetMsg.z = 0.070;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.051;
-        hand.publish(handMsg);
-
+	// lift up the block
+	move(0.000000, 0.336000, 0.200000, 
+	     0.000000, towers::pi / 2, 0.040);
         sleep(25);
 
-        targetMsg.x = 0.000;
-        targetMsg.y = 0.336;
-        targetMsg.z = 0.200;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.051;
-        hand.publish(handMsg);
-
+	// move the block to pos2
+	move(0.237558, 0.237558, 0.200000, 
+	     towers::pi / 4, towers::pi / 2, 0.040);
         sleep(25);
 
-        targetMsg.x = 0.000;
-        targetMsg.y = 0.336;
-        targetMsg.z = 0.200;
-        targetMsg.pitch = towers::pi / 2;
-        targetMsg.roll = 0;
-        targets.publish(targetMsg);
-        
-        handMsg.width = 0.065;
-        hand.publish(handMsg);
-
+	// lower the block
+	move(0.237558, 0.237558, 0.070000, 
+	     towers::pi / 4, towers::pi / 2, 0.040);
         sleep(25);
-        //ROS_INFO("MOVE DOWN");
 
-        //targetMsg.x = 0.400;
-        //targetMsg.y = 0.000;
-        //targetMsg.z = 0.005;
-        //targetMsg.pitch = 0;
-        //targetMsg.roll = 0;
-        //targets.publish(targetMsg);
-        //
-        //handMsg.width = 0.064;
-        //hand.publish(handMsg);
+	// release the block
+	move(0.237558, 0.237558, 0.070000, 
+	     towers::pi / 4, towers::pi / 2, 0.065);
+        sleep(25);
 
-        //sleep(20);
-        //ROS_INFO("GRIP");
-
-        //targetMsg.x = 0.400;
-        //targetMsg.y = 0.000;
-        //targetMsg.z = 0.005;
-        //targetMsg.pitch = 0;
-        //targetMsg.roll = 0;
-        //targets.publish(targetMsg);
-        //
-        //handMsg.width = 0.030;
-        //hand.publish(handMsg);
-
-        //sleep(20);
-        //ROS_INFO("LIFT");
-
-        //targetMsg.x = 0.400;
-        //targetMsg.y = 0.000;
-        //targetMsg.z = 0.100;
-        //targetMsg.pitch = 0;
-        //targetMsg.roll = 0;
-        //targets.publish(targetMsg);
-        //
-        //handMsg.width = 0.030;
-        //hand.publish(handMsg);
-
-        //sleep(20);
-        //ROS_INFO("DROP");
-
-        //targetMsg.x = 0.400;
-        //targetMsg.y = 0.000;
-        //targetMsg.z = 0.100;
-        //targetMsg.pitch = 0;
-        //targetMsg.roll = 0;
-        //targets.publish(targetMsg);
-        //
-        //handMsg.width = 0.64;
-        //hand.publish(handMsg);
-
-        //sleep(20);
+	// lift the gripper
+	move(0.237558, 0.237558, 0.200000, 
+	     towers::pi / 4, towers::pi / 2, 0.065);
+        sleep(25);
     }
 }
