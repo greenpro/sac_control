@@ -210,5 +210,5 @@ link_directories(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(       towers_of_hannoi_controller src/towers_of_hannoi_controller.cpp)
-target_link_libraries(towers_of_hannoi_controller ${catkin_LIBRARIES})
+add_executable(       towers_of_hanoi_controller src/towers_of_hanoi_controller.cpp)
+target_link_libraries(towers_of_hanoi_controller ${catkin_LIBRARIES})

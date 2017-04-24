@@ -6,8 +6,8 @@ This folder holds the controller files for the project.
 ### custom_controller.cpp
 * This controller will provide a blank framework for others to copy and add on top of.
 
-### towers_of_hannoi_controller.cpp
-* This controller will provide perform the Towers of Hannoi solution.
+### towers_of_hanoi_controller.cpp
+* This controller will provide perform the Towers of Hanoi solution.
 
 ### api_controller.cpp
 * This controller will provide a web API to control the robot with.
