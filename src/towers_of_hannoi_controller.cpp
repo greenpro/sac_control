@@ -8,11 +8,7 @@
 #include <geometry_msgs/Pose.h>
 #include <shape_msgs/SolidPrimitive.h>
 #include <sac_msgs/Target.h>
-#include <moveit_msgs/AttachedCollisionObject.h>
-#include <moveit_msgs/CollisionObject.h>
-#include <moveit/move_group_interface/move_group_interface.h>
-#include <moveit/planning_scene_interface/planning_scene_interface.h>
-//#include <sac_msgs/Path.h>
+#include <sac_msgs/Path.h>
 #include <sac_msgs/HandPos.h>
 
 namespace towers
