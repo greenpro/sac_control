@@ -17,7 +17,6 @@ namespace towers
     const char *nodeName = "towers_of_hannoi_controller";
     const int controllerNum = 1;
     const float pi = 3.1415926535898;
-    const char *planningGroup = "arm";
 
     // variables
     bool enabled = true; // change this to false later if this is not the default node.
