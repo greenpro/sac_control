@@ -1,0 +1,4 @@
+<launch>
+    <node name="custom_controller" pkg="sac_controllers" type="custom_controller" 
+        respawn="false" output="screen" />
+</launch>

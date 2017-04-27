@@ -4,13 +4,13 @@ This folder holds the controller files for the project.
 
 ## Files
 ### custom_controller.cpp
-* This controller will provide a blank framework for others to copy and add on top of.
+* This controller will provide a blank framework for others to copy and add on top of. To launch run "roslaunch sac_launch custom.launch".
 
 ### towers_of_hanoi_controller.cpp
-* This controller will provide perform the Towers of Hanoi solution.
+* This controller will provide perform the Towers of Hanoi solution. To launch run "roslaunch sac_launch towers.launch".
 
 ### api_controller.cpp
-* This controller will provide a web API to control the robot with.
+* This controller will provide a web API to control the robot with. To launch run "roslaunch sac_launch api.launch".
 
 ## Folders
 ### helpers/
