@@ -427,17 +427,17 @@ int main(int argc, char **argv)
     sleep(15);
     while (towers::enabled)
     {
-	// lift into place
-	move(0.336000, 0.000000, 0.200000, 
-	     0.000000, towers::pi / 2, 0.065);
-        sleep(towers::liftWait);
+        // lift into place
+        move(0.336000, 0.000000, 0.200000, 
+             0.000000, towers::pi / 2, 0.065);
+            sleep(towers::liftWait);
 
-	move0();
-	move1();
-	move2();
-	move3();
-	move4();
-	move5();
-	move6();
+        move0();
+        move1();
+        move2();
+        move3();
+        move4();
+        move5();
+        move6();
     }
 }

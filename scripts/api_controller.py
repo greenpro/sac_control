@@ -1,6 +1,9 @@
 # ROS
 import rospy
 from std_msgs.msg import String
+from sac_msgs.msg import Path
+from sac_msgs.msg import Target
+from sac_msgs.msg import HandPos
 
 # Web Server
 import string, cgi, time
@@ -10,29 +13,34 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 # This should be moved to a post later but it is a get for now to make the initial writing faster
 # Change the message type when the type gets figured out
 
+# NOTE :: This code is not my own, It can be found at several sources here is one: pymotw.com/2/BaseHTTPServer
+
 class handler(BaseHTTPRequestHandler):
     def do_get(self):
         path = path.split("/")
         # print x, y, z, theta, time
-        x = path[1]
-        y = path[2]
-        z = path[3]
-        roll = path[4]
-        pitch = path[5]
+        x = path[0]
+        y = path[1]
+        z = path[2]
+        roll = path[3]
+        pitch = path[4]
+        hand = path[5]
         time = path[6]
 
-        if path.contains("jacobian"):
-            pub = rospy.Publisher("jCoordinates", String, queue_size=10)
-        elif path.contains("ik"):
-            pub = rospy.Publisher("ikCoordinates", String, queue_size=10)
+        ikPub = rospy.Publisher("moveto", Target, queue_size=10)
+        handPub = rospy.Publisher("handDriver", HandPos, queue_size=10)
 
         rospy.init_node("api_controller", anonymous=True)
-        msg = "message"
-        pub.publish(msg)
+        msg = Target(x, y, z, roll, pitch, time)
+        ikPub.publish(msg)
+
+        msg = HandPos(hand, time)
+        handPub.publish(msg)
 
         self.send_response(200)
         return
 
+    # Not in current use.
     def do_post(self):
         global rootnode
         try:
