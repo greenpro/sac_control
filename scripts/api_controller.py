@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+# NOTE :: the top line is not a comment it is necessary for ROS.
 # ROS
 import rospy
 from std_msgs.msg import String
@@ -16,21 +19,30 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 # NOTE :: This code is not my own, It can be found at several sources here is one: pymotw.com/2/BaseHTTPServer
 
 class handler(BaseHTTPRequestHandler):
-    def do_get(self):
-        path = path.split("/")
+    def do_GET(self):
+        path = self.path.split("/")
         # print x, y, z, theta, time
-        x = path[0]
-        y = path[1]
-        z = path[2]
-        roll = path[3]
-        pitch = path[4]
-        hand = path[5]
-        time = path[6]
+        x = float(path[1])
+        y = float(path[2])
+        z = float(path[3])
+        roll = float(path[4])
+        pitch = float(path[5])
+        hand = float(path[6])
+        time = float(path[7])
+
+	print("")
+	print("x", x)
+	print("y", y)
+	print("z", z)
+	print("r", roll)
+	print("p", pitch)
+	print("h", hand)
+	print("t", time)
+	print("")
 
         ikPub = rospy.Publisher("moveto", Target, queue_size=10)
         handPub = rospy.Publisher("handDriver", HandPos, queue_size=10)
 
-        rospy.init_node("api_controller", anonymous=True)
         msg = Target(x, y, z, roll, pitch, time)
         ikPub.publish(msg)
 
@@ -41,7 +53,7 @@ class handler(BaseHTTPRequestHandler):
         return
 
     # Not in current use.
-    def do_post(self):
+    def do_POST(self):
         global rootnode
         try:
             ctype, pdict = cgi.parse_header(self.headers.getheader("content-type"))
@@ -59,13 +71,17 @@ class handler(BaseHTTPRequestHandler):
             pass
 
 def main():
+    rospy.init_node("api_controller", anonymous=True)
+
     try:
-        server = HTTPServer(("", 80), handler)
-        # ros print "Server started..."
+	print("1");
+        server = HTTPServer(("", 8080), handler)
+	print("2");
         server.serve_forever()
+	print("3");
     except:
-        # ros print "Shutting down server"
-        server.socket.close()
+	if 'server' in locals():
+            server.socket.close()
 
 if __name__ == "__main__":
     main()

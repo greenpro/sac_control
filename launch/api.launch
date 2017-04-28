@@ -1,4 +1,4 @@
 <launch>
-    <node name="api_controller" pkg="sac_controllers" type="api_controller" 
+    <node name="api_controller" pkg="sac_controllers" type="api_controller.py" 
         respawn="false" output="screen" />
 </launch>

@@ -3,11 +3,12 @@ project(sac_controllers)
 
 add_compile_options(-std=c++14)
 
-find_package(Eigen3 REQUIRED)
-
-if(NOT EIGEN3_INCLUDE_DIRS)
-    set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
-endif()
+# Used for Moveit
+#find_package(Eigen3 REQUIRED)
+#
+#if(NOT EIGEN3_INCLUDE_DIRS)
+#    set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
+#endif()
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
