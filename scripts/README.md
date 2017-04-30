@@ -1,11 +1,14 @@
-# Southern Arm Control Controllers > include
+# Southern Arm Control Controllers > scripts
 
-This folder holds the python controllers for the project.
+This folder holds the python controller files for the project.
 
 ## Files
 ### api_controller.py
-* This controller will allow a web API to interract with the arm.
+* This controller will provide an API which can be accessed over the internet.
+* The API can be controlled through a get request to [ip]:8080/X/Y/Z/Roll/Pitch/Hand Width/Time.
+
+### api_controller_test.sh
+* A simple rough script to control the API.
 
 ## Notes
-* Much of the code for the nodes comes from http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
-* Much of the code fot the API node comes from https://fragments.turtlemeat.com/pythonwebserver.php
+* All of the files in this folder should be controllers for the Southern Arm Controller project.
