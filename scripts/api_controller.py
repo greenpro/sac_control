@@ -22,6 +22,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split("/")
         # print x, y, z, theta, time
+	print(path)
         x = float(path[1])
         y = float(path[2])
         z = float(path[3])

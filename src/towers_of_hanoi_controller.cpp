@@ -20,12 +20,12 @@ namespace towers
     const char *planningGroup = "arm";
     
     // wait times (if running on a vm these may need to be increased.)
-    const int gripWait = 10; // time for the gripper to open and close.
+    const int gripWait = 7; // time for the gripper to open and close.
     const int rotWait = 9; // time for the gripper to rotate between targets
     const int liftWait = 5; // time for the gripper to raise and lower
 
     // grip widths
-    const float block2Grip = 0.018;
+    const float block2Grip = 0.017;
     const float block1Grip = 0.028;
     const float block0Grip = 0.038;
     const float openGrip = 0.065;
@@ -216,7 +216,7 @@ void move2()
     sleep(towers::liftWait);
 	// blocks
         //      
-	    //   2  
+	//   2  
         //   1 0
 }
 
@@ -224,7 +224,7 @@ void move3()
 {
 	// blocks
         //      
-	    //   2  
+	//   2  
         //   1 0
     // turn to move over the block 0
     move(0.000000, 0.336000, towers::raised, 
@@ -252,7 +252,7 @@ void move3()
     sleep(towers::rotWait * 2);
     
     // lower the block
-    move(0.336000, 0.000000, towers::drop, 
+    move(0.336000, 0.000000, 0.000000, 
          0.000000, towers::pi / 2, towers::block0Grip);
     sleep(towers::liftWait);
     
@@ -267,7 +267,7 @@ void move3()
     sleep(towers::liftWait);
 	// blocks
         //      
-	    //   2  
+	//   2  
         // 0 1  
 }
 
@@ -275,7 +275,7 @@ void move4()
 {
 	// blocks
         //      
-	    //   2  
+	//   2  
         // 0 1  
     // turn to move over the block 2
     move(0.237558, 0.237558, towers::raised, 
