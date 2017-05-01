@@ -67,12 +67,12 @@ void move(float x, float y, float z,
     towers::hand.publish(handMsg);
 }
 
-void move0()
+void move0start()
 {
 	// blocks
-        //     2
-	    //     1
-        //     0
+    //     2
+	//     1
+    //     0
     // turn to move over the block 2
     move(0.000000, 0.336000, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -113,17 +113,53 @@ void move0()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    //     1
-        // 2   0
+    //      
+	//     1
+    // 2   0
+}
+
+void move0()
+{
+	// blocks
+    //     2
+	//     1
+    //     0
+    // lift up the block
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos 2
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::rotWait * 2);
+    
+    // lower the block
+    move(0.336000, 0.000000, towers::drop, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.336000, 0.000000, towers::drop, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    //      
+	//     1
+    // 2   0
 }
 
 void move1()
 {
 	// blocks
-        //      
-	    //     1
-        // 2   0
+    //      
+	//     1
+    // 2   0
     // turn to move over the block 1
     move(0.000000, 0.336000, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -164,17 +200,17 @@ void move1()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    //      
-        // 2 1 0
+    //      
+	//      
+    // 2 1 0
 }
 
 void move2()
 {
 	// blocks
-        //      
-	    //      
-        // 2 1 0
+    //      
+	//      
+    // 2 1 0
     // turn to move over the block 2
     move(0.336000, 0.000000, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -215,17 +251,17 @@ void move2()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    //   2  
-        //   1 0
+    //      
+	//   2  
+    //   1 0
 }
 
 void move3()
 {
 	// blocks
-        //      
-	    //   2  
-        //   1 0
+    //      
+	//   2  
+    //   1 0
     // turn to move over the block 0
     move(0.000000, 0.336000, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -266,17 +302,17 @@ void move3()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    //   2  
-        // 0 1  
+    //      
+	//   2  
+    // 0 1  
 }
 
 void move4()
 {
 	// blocks
-        //      
-	    //   2  
-        // 0 1  
+    //      
+	//   2  
+    // 0 1  
     // turn to move over the block 2
     move(0.237558, 0.237558, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -317,24 +353,24 @@ void move4()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    //      
-        // 0 1 2
+    //      
+	//      
+    // 0 1 2
 }
 
 void move5()
 {
 	// blocks
-        //      
-	    //      
-        // 0 1 2
+    //      
+	//      
+    // 0 1 2
     // turn to move over the block 0
     move(0.237558, 0.237558, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::rotWait);
     
     // lower onto the block 0
-    move(0.237558, 0.237558, towers:: lift, 
+    move(0.237558, 0.237558, towers::lift, 
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
     
@@ -368,17 +404,17 @@ void move5()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        //      
-	    // 1    
-        // 0   2
+    //      
+	// 1    
+    // 0   2
 }
 
 void move6()
 {
 	// blocks
-        //      
-	    // 1    
-        // 0   2
+    //      
+	// 1    
+    // 0   2
     // turn to move over the block 0
     move(0.000000, 0.336000, towers::raised, 
          0.000000, towers::pi / 2, towers::openGrip);
@@ -405,12 +441,242 @@ void move6()
     sleep(towers::rotWait * 2);
     
     // lower the block
-    move(0.336000, 0.000000, 0.080000, 
+    move(0.336000, 0.000000, towers::block0 + towers::block1 + towers::lift, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+	// blocks
+    // 2    
+	// 1    
+    // 0    
+}
+
+void move7()
+{
+	// blocks
+    // 2     
+	// 1    
+    // 0   
+    // lift up the block
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::rotWait * 2);
+    
+    // lower the block
+    move(0.000000, 0.336000, towers::drop, 
          0.000000, towers::pi / 2, towers::block2Grip);
     sleep(towers::liftWait);
     
     // release the block
-    move(0.336000, 0.000000, 0.080000, 
+    move(0.000000, 0.336000, towers::drop, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    // 
+	// 1    
+    // 0   2
+}
+
+void move8()
+{
+	// blocks
+    //      
+	// 1    
+    // 0   2
+    // turn to move over the block 1
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait * 2);
+    
+    // lower onto the block 1
+    move(0.336000, 0.000000, towers::block0 + towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.336000, 0.000000, towers::block0 + towers::lift, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::rotWait);
+    
+    // lower the block
+    move(0.237558, 0.237558, towers::drop,
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.237558, 0.237558, towers::drop,
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    //      
+	//      
+    // 0 1 2
+}
+
+void move9()
+{
+	// blocks
+    //      
+	//      
+    // 0 1 2
+    // turn to move over the block 2
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait);
+    
+    // lower onto the block 2
+    move(0.000000, 0.336000, towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.000000, 0.336000, towers::block0 + towers::lift, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::rotWait);
+    
+    // lower the block
+    move(0.237558, 0.237558, towers::block1 + towers::drop,
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.237558, 0.237558, towers::block1 + towers::drop,
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    //      
+	//   2  
+    // 0 1  
+}
+
+void move10()
+{
+	// blocks
+    //      
+	//   2  
+    // 0 1  
+    // turn to move over the block 0
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait);
+    
+    // lower onto the block 0
+    move(0.336000, 0.000000, towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.336000, 0.000000, towers::block0 + towers::lift, 
+         0.000000, towers::pi / 2, towers::block0Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block0Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block0Grip);
+    sleep(towers::rotWait * 2);
+    
+    // lower the block
+    move(0.000000, 0.336000, towers::drop,
+         0.000000, towers::pi / 2, towers::block0Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.000000, 0.336000, towers::drop,
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    //      
+	//   2  
+    //   1 0
+}
+
+void move11()
+{
+	// blocks
+    //      
+	//   2  
+    //   1 0
+    // turn to move over the block 2
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait);
+    
+    // lower onto the block 2
+    move(0.237558, 0.237558, towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.237558, 0.237558, towers::block1 + towers::lift, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::rotWait);
+    
+    // lower the block
+    move(0.336000, 0.000000, towers::block1 + towers::drop,
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.336000, 0.000000, towers::block1 + towers::drop,
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::gripWait);
     
@@ -419,9 +685,101 @@ void move6()
          0.000000, towers::pi / 2, towers::openGrip);
     sleep(towers::liftWait);
 	// blocks
-        // 2    
-	    // 1    
-        // 0    
+    //      
+	//      
+    // 2 1 0
+}
+
+void move12()
+{
+	// blocks
+    //      
+	//      
+    // 2 1 0
+    // turn to move over the block 1
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait);
+    
+    // lower onto the block 1
+    move(0.237558, 0.237558, towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.237558, 0.237558, towers::lift, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.237558, 0.237558, towers::raised, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::rotWait);
+    
+    // lower the block
+    move(0.000000, 0.336000, towers::block0 + towers::drop,
+         0.000000, towers::pi / 2, towers::block1Grip);
+    sleep(towers::liftWait);
+    
+    // release the block
+    move(0.000000, 0.336000, towers::block0 + towers::drop,
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::gripWait);
+    
+    // lift the gripper
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+	// blocks
+    //      
+	//     1
+    // 2   0
+}
+
+void move13()
+{
+	// blocks
+    //      
+	//     1
+    // 2   0
+    // turn to move over the block 1
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::rotWait * 2);
+    
+    // lower onto the block 1
+    move(0.336000, 0.000000, towers::lift, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+    
+    // close the hand on the block
+    move(0.336000, 0.000000, towers::lift, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::gripWait);
+    
+    // lift up the block
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+    
+    // move the block to pos
+    move(0.000000, 0.336000, towers::raised, 
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::rotWait);
+    
+    // lower the block
+    move(0.000000, 0.336000, towers::block0 + towers::block1 + towers::drop,
+         0.000000, towers::pi / 2, towers::block2Grip);
+    sleep(towers::liftWait);
+	// blocks
+    //     2
+	//     1
+    //     0
 }
 
 int main(int argc, char **argv)
@@ -434,19 +792,31 @@ int main(int argc, char **argv)
     towers::hand = nh.advertise<sac_msgs::HandPos>("/handDriver", 1000);
 
     sleep(15);
+
+    // lift into place
+    move(0.336000, 0.000000, towers::raised, 
+         0.000000, towers::pi / 2, towers::openGrip);
+    sleep(towers::liftWait);
+
+    move0start();
+
     while (towers::enabled)
     {
-        // lift into place
-        move(0.336000, 0.000000, towers::raised, 
-             0.000000, towers::pi / 2, towers::openGrip);
-            sleep(towers::liftWait);
-
-        move0();
         move1();
         move2();
         move3();
         move4();
         move5();
         move6();
+        sleep(10);
+        move7();
+        move8();
+        move9();
+        move10();
+        move11();
+        move12();
+        move13();
+        sleep(10);
+        move0();
     }
 }
