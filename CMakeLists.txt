@@ -19,9 +19,9 @@ find_package(catkin REQUIRED COMPONENTS
     message_generation
     sac_msgs
     geometric_shapes
-    moveit_core
-    moveit_ros_planning
-    moveit_ros_planning_interface
+    #moveit_core
+    #moveit_ros_planning
+    #moveit_ros_planning_interface
 )
 # moveit_core
 # moveit_ros_planning
