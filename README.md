@@ -1,6 +1,6 @@
 # Southern Arm Control Controllers
 
-This project holds the controllers for the Southern Arm Control workspace. Full documentation for the sac project can be found at [CraigCode1010.com](craigcode1010.com) under projects > SAC.
+This project holds the controllers for the Southern Arm Control workspace. Full documentation for the sac project can be found at [CraigCode1010.com](http://craigcode1010.com) under projects > SAC.
 
 ## Installation
 
